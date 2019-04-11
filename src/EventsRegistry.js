@@ -14,12 +14,12 @@ export default class EventsRegistry {
 
   //---------
 
-  static registerOnButtonPressed = (callback) => {
-    return EventsRegistry.addListener('buttonPressedEvent', callback);
+  static registerComponentEvent = (callback) => {
+    return EventsRegistry.addListener('componentEvent', callback);
   };
 
-  static notifyOnButtonPressed = (args) => {
-    EventsRegistry.notifyListeners('buttonPressedEvent', args);
+  static notifyComponentEvent = (args) => {
+    EventsRegistry.notifyListeners('componentEvent', args);
   };
 
   //---------

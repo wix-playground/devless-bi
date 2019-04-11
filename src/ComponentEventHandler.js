@@ -1,12 +1,12 @@
 const RemoteService = require('./remoteService/index').default;
 
 class ComponentEventHandler {
-  handleComponentEvent({biId, isDevMode}) {
+  handleComponentEvent({biId, isDevMode, trigger}) {
     if (isDevMode) {
       this.updateBiConfig(biId)
     } else {
       const event = this._getEventByBiId(biId);
-      if (event && event.isValid()) {
+      if (event && event.isValid() && event.trigger === trigger) {
         this.sendBiCallback({src: event.src, evid: event.evid, params: event.params});
       } else {
         console.error(`Event is not valid: ${event}`)

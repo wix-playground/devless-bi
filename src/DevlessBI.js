@@ -8,7 +8,7 @@ class DevlessBI {
     this.devModeActive = false;
     this.componentEventHandler = new ComponentEventHandler();
     this._handleComponentEvent = this._handleComponentEvent.bind(this);
-    this.onbuttonPressedListener = EventsRegistry.registerOnButtonPressed(this._handleComponentEvent);
+    this.onComponentEventListener = EventsRegistry.registerComponentEvent(this._handleComponentEvent);
   }
 
   setConfiguration(configuration) {
@@ -54,7 +54,7 @@ class DevlessBI {
     return this.componentEventHandler.hasEventForComponent(biId);
   }
 
-  _handleComponentEvent({biId}) {
+  _handleComponentEvent({biId, trigger}) {
     this.componentEventHandler.handleComponentEvent({
       biId,
       isDevMode: this.isDevMode()
