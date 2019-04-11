@@ -4,7 +4,7 @@ const ComponentRegistry = require('./ComponentRegistry').default;
 
 class DevlessBI {
   constructor() {
-    this.isActive = false;
+    this.active = false;
   }
 
   setWrapperComponent(Component) {
@@ -14,17 +14,17 @@ class DevlessBI {
   activate() {
     this.onbuttonPressedListener = EventsRegistry.registerOnButtonPressed(({biId}) => alert(`button pressed with biId "${biId}"`));
     EventsRegistry.notifyBiDevModeActivated();
-    this.isActive = true;
+    this.active = true;
   }
 
   deactivate () {
     this.onbuttonPressedListener.remove();
     EventsRegistry.notifyBiDevModeDeactivated();
-    this.isActive = false;
+    this.active = false;
   }
 
   isActive() {
-    return this.isActive;
+    return this.active;
   }
 
   withEvents(Component) {
