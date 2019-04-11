@@ -9,10 +9,12 @@ class DevlessBI {
 
   activate() {
     this.onbuttonPressedListener = EventsRegistry.registerOnButtonPressed(({biId}) => alert(`button pressed with biId "${biId}"`));
+    EventsRegistry.notifyBiDevModeActivated();
   }
 
   deactivate () {
     this.onbuttonPressedListener.remove();
+    EventsRegistry.notifyBiDevModeDeactivated();
   }
 
   withEvents(Component) {

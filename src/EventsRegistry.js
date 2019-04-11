@@ -28,7 +28,11 @@ export default class EventsRegistry {
     return EventsRegistry.addListener('biDevModeChanged', callback);
   };
 
-  static notifyBiDevModeChanged = (args) => {
-    EventsRegistry.notifyListeners('biDevModeChanged', args);
+  static notifyBiDevModeActivated = () => {
+    EventsRegistry.notifyListeners('biDevModeChanged', true);
+  };
+
+  static notifyBiDevModeDeactivated = () => {
+    EventsRegistry.notifyListeners('biDevModeChanged', false);
   };
 }
