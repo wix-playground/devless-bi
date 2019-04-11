@@ -1,16 +1,16 @@
 import _ from 'lodash';
 
 export default class ComponentRegistry {
-  static componentsRegistry = {};
+  static components = {};
 
   static registerButtonRenderWrapper(WrapperComponent, propsGenerator) {
-    EventsRegistry.componentsRegistry['buttonRenderWrapper'] = {WrapperComponent, propsGenerator};
+    ComponentRegistry.components['buttonRenderWrapper'] = {WrapperComponent, propsGenerator};
     return {
-      remove: () => delete EventsRegistry.componentsRegistry['buttonRenderWrapper']
+      remove: () => delete ComponentRegistry.components['buttonRenderWrapper']
     }
   };
 
   static getButtonRenderWrapper = () => {
-    return EventsRegistry.componentsRegistry['buttonRenderWrapper'];
+    return ComponentRegistry.components['buttonRenderWrapper'];
   };
 }
