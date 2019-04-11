@@ -1,9 +1,8 @@
+class ComponentEventHandler {
 
-export default class ComponentEventHandler {
-
-  handleComponentEvent = ({biId, isDevMode}) => {
+  handleComponentEvent({biId, isDevMode}) {
     if (isDevMode) {
-      updateBiConfig(biId)
+      this.updateBiConfig(biId)
     } else {
       this.sendBiCallback({biId});
     }
@@ -21,3 +20,5 @@ export default class ComponentEventHandler {
     // TODO: send event to server with biId, screen name
   }
 }
+
+export default new ComponentEventHandler();
