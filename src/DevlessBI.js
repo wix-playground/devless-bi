@@ -1,7 +1,7 @@
 const EventsRegistry = require('./EventsRegistry').default;
 const withBiEvents = require('./withBiEvents').default;
 const ComponentRegistry = require('./ComponentRegistry').default;
-const componentEventHandler = require('./ComponentEventHandler').default;
+const ComponentEventHandler = require('./ComponentEventHandler').default;
 
 class DevlessBI {
   constructor() {
