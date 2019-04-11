@@ -6,16 +6,21 @@ const componentEventHandler = require('./ComponentEventHandler').default;
 class DevlessBI {
   constructor() {
     this.devModeActive = false;
+    this.componentEventHandler = new ComponentEventHandler();
     this._handleComponentEvent = this._handleComponentEvent.bind(this);
     this.onbuttonPressedListener = EventsRegistry.registerOnButtonPressed(this._handleComponentEvent);
   }
 
+  setConfiguration(configuration) {
+    this.componentEventHandler.setConfiguration(configuration);
+  }
+
   registerSendBiCallback(callback) {
-    componentEventHandler.registerSendBiCallback(callback);
+    this.componentEventHandler.registerSendBiCallback(callback);
   }
 
   setCurrentVisibleScreen(screenName) {
-    componentEventHandler.setCurrentVisibleScreen(screenName);
+    this.componentEventHandler.setCurrentVisibleScreen(screenName);
   }
 
   registerWrapperComponent(WrapperComponent, propsGenerator) {
@@ -41,7 +46,7 @@ class DevlessBI {
   }
 
   _handleComponentEvent({biId}) {
-    componentEventHandler.handleComponentEvent({
+    this.componentEventHandler.handleComponentEvent({
       biId,
       isDevMode: this.isDevMode()
     });

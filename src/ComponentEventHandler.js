@@ -4,9 +4,14 @@ class ComponentEventHandler {
     if (isDevMode) {
       this.updateBiConfig(biId)
     } else {
+      //TODO: resolve bi event params from biId AND SEND TO CALLBACK
       this.sendBiCallback({biId});
     }
   };
+
+  setConfiguration(configuration) {
+    this.configuration = configuration;
+  }
 
   registerSendBiCallback(callback) {
     this.sendBiCallback = callback;
@@ -21,4 +26,4 @@ class ComponentEventHandler {
   }
 }
 
-export default new ComponentEventHandler();
+export default ComponentEventHandler;
