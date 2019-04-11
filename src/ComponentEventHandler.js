@@ -5,8 +5,12 @@ class ComponentEventHandler {
     if (isDevMode) {
       this.updateBiConfig(biId)
     } else {
-      //TODO: resolve bi event params from biId AND SEND TO CALLBACK
-      this.sendBiCallback({biId});
+      const event = (this.events.filter((event) => event.biId === biId))[0];
+      if (event && event.isValid()) {
+        this.sendBiCallback({src: event.src, evid: event.evid, params: event.params});
+      } else {
+        console.error(`Event is not valid: ${event}`)
+      }
     }
   };
 

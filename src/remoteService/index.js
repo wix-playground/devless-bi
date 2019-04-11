@@ -15,7 +15,6 @@ class RemoteService {
     } catch(e) {
       console.error(e);
     }
-
   }
 }
 
