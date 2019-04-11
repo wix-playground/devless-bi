@@ -1,6 +1,6 @@
 {
   "name": "devless-bi",
-  "version": "2.0.1",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,8 @@
   "license": "MIT",
   "dependencies": {},
   "peerDependencies": {
+    "hoist-non-react-statics": "3.3.0",
+    "react-native-ui-lib": "3.23.1",
     "react-native-navigation": "^2.0.0",
     "react": "*",
     "lodash": "*"
