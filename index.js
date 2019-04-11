@@ -1,2 +1,3 @@
+const DevlessBI = require('./src/DevlessBI');
 
-module.exports = require('./src/DevlessBI');
+module.exports = new DevlessBI();

@@ -36,4 +36,4 @@ class DevlessBI {
   }
 }
 
-export default new DevlessBI();
+export default DevlessBI;
