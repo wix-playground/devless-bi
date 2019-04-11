@@ -32,7 +32,7 @@ class ComponentEventHandler {
   }
 
   updateBiConfig(biId) {
-    // TODO: send event to server with biId, screen name
+    this.remoteService.updateComponent({biId, screenName: this.visibleScreen});
   }
 }
 
