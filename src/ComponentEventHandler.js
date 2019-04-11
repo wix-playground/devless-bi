@@ -5,7 +5,7 @@ class ComponentEventHandler {
     if (isDevMode) {
       this.updateBiConfig(biId)
     } else {
-      const event = (this.events.filter((event) => event.biId === biId))[0];
+      const event = this._getEventByBiId(biId);
       if (event && event.isValid()) {
         this.sendBiCallback({src: event.src, evid: event.evid, params: event.params});
       } else {
@@ -33,6 +33,15 @@ class ComponentEventHandler {
 
   updateBiConfig(biId) {
     this.remoteService.updateComponent({biId, screenName: this.visibleScreen});
+  }
+
+  hasEventForComponent(biId) {
+    const event = this._getEventByBiId(biId);
+    return event !== undefined;
+  }
+
+  _getEventByBiId(biId) {
+    return this.events.find((event) => event.biId === biId);
   }
 }
 

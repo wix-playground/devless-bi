@@ -19,12 +19,15 @@ class RemoteService {
 
   async updateComponent({biId, screenName}) {
     try {
-      const response = await fetch(`${this.baseURL}/components`, {
+      const response = await fetch(`${this.baseURL}/component`, {
         method: 'PUT',
-        body: JSON.stringify({biId, screenName})
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({biid: biId, screenName})
       });
       if (!response.ok) {
-        throw Error("Transport Error: Cannot send bi using fetch. Status: " + response.status);
+        throw Error("Transport Error: Cannot update component. Status: " + response.status + "\nResponse: " + JSON.stringify(response));
       }
     } catch(e) {
       console.error(e);

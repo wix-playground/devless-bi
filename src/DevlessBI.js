@@ -49,6 +49,10 @@ class DevlessBI {
     return await this.componentEventHandler.reloadEvents();
   }
 
+  hasEventForComponent(biId) {
+    return this.componentEventHandler.hasEventForComponent(biId);
+  }
+
   _handleComponentEvent({biId}) {
     this.componentEventHandler.handleComponentEvent({
       biId,

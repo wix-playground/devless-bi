@@ -5,7 +5,7 @@ class EventDTO {
   }
 
   get biId() {
-    return this._event.biId;
+    return this._event.biid;
   }
 
   get evid() {
