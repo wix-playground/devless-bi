@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {View} from 'react-native';
 import hoistNonReactStatic from 'hoist-non-react-statics';
 import EventsRegistry from './EventsRegistry';
 import ComponentRegistry from './ComponentRegistry';
@@ -48,13 +49,14 @@ function withBiEvents(WrappedComponent) {
     render() {
       const {biId} = this.props;
       if (this.state.biDevModeEnabled && biId) {
-        const {WrapperComponent, propsGenerator} = ComponentRegistry.getButtonRenderWrapper();
-        if (WrapperComponent) {
+        const {OverlayComponent, propsGenerator} = ComponentRegistry.getButtonRenderOverlay();
+        if (OverlayComponent) {
           const props = propsGenerator({biId});
           return (
-            <WrapperComponent {...props}>
+            <View>
               {this._render()}
-            </WrapperComponent>
+              <OverlayComponent pointerEvents={'none'} {...props} style={[props.style, {position: 'absolute', left: 0, bottom: 0, top: 0, right: 0}]}/>
+            </View>
           );
         }
       }

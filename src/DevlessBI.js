@@ -23,8 +23,8 @@ class DevlessBI {
     this.componentEventHandler.setCurrentVisibleScreen(screenName);
   }
 
-  registerWrapperComponent(WrapperComponent, propsGenerator) {
-    return ComponentRegistry.registerButtonRenderWrapper(WrapperComponent, propsGenerator);
+  registerOverlayComponent(OverlayComponent, propsGenerator) {
+    return ComponentRegistry.registerButtonRenderOverlay(OverlayComponent, propsGenerator);
   }
 
   activateDevMode() {
@@ -47,6 +47,7 @@ class DevlessBI {
 
   async reloadEvents() {
     return await this.componentEventHandler.reloadEvents();
+    //TODO: force to HOC to reload so we can se cahnges
   }
 
   hasEventForComponent(biId) {

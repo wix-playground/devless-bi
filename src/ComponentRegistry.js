@@ -3,14 +3,14 @@ import _ from 'lodash';
 export default class ComponentRegistry {
   static components = {};
 
-  static registerButtonRenderWrapper(WrapperComponent, propsGenerator) {
-    ComponentRegistry.components['buttonRenderWrapper'] = {WrapperComponent, propsGenerator};
+  static registerButtonRenderOverlay(OverlayComponent, propsGenerator) {
+    ComponentRegistry.components['buttonRenderOverlay'] = {OverlayComponent, propsGenerator};
     return {
-      remove: () => delete ComponentRegistry.components['buttonRenderWrapper']
+      remove: () => delete ComponentRegistry.components['buttonRenderOverlay']
     }
   };
 
-  static getButtonRenderWrapper = () => {
-    return ComponentRegistry.components['buttonRenderWrapper'];
+  static getButtonRenderOverlay = () => {
+    return ComponentRegistry.components['buttonRenderOverlay'];
   };
 }
