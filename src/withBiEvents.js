@@ -26,10 +26,12 @@ function withBiEvents(WrappedComponent) {
     }
 
     _onPress = () => {
-      if (this.state.biDevModeEnabled) {
-        const {biId} = this.props;
+      const {biId} = this.props;
+      if (biId) {
         EventsRegistry.notifyOnButtonPressed({biId});
-      } else {
+      }
+
+      if (!this.state.biDevModeEnabled) {
         const {onPress} = this.props;
         if(onPress) {
           onPress();
