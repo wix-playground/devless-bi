@@ -1,5 +1,6 @@
-class ComponentEventHandler {
+const RemoteService = require('./remoteService/index').default;
 
+class ComponentEventHandler {
   handleComponentEvent({biId, isDevMode}) {
     if (isDevMode) {
       this.updateBiConfig(biId)
@@ -9,8 +10,9 @@ class ComponentEventHandler {
     }
   };
 
-  setConfiguration(configuration) {
-    this.configuration = configuration;
+  async setConfiguration(configuration) {
+    this.remoteService = new RemoteService(configuration.apiEndpoint);
+    this.events = await this.remoteService.getEvents();
   }
 
   registerSendBiCallback(callback) {
