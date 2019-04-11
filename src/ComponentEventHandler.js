@@ -19,6 +19,10 @@ class ComponentEventHandler {
     this.events = await this.remoteService.getEvents();
   }
 
+  async reloadEvents() {
+    this.events = await this.remoteService.getEvents();
+  }
+
   registerSendBiCallback(callback) {
     this.sendBiCallback = callback;
   }
