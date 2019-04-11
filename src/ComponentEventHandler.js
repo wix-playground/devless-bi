@@ -15,6 +15,7 @@ class ComponentEventHandler {
   };
 
   async setConfiguration(configuration) {
+    this.configuration = configuration;
     this.remoteService = new RemoteService(configuration.apiEndpoint);
     this.events = await this.remoteService.getEvents();
   }
@@ -32,7 +33,7 @@ class ComponentEventHandler {
   }
 
   updateBiConfig(biId) {
-    this.remoteService.updateComponent({biId, screenName: this.visibleScreen});
+    this.remoteService.updateComponent({biId, screenName: this.visibleScreen, author: this.configuration.author});
   }
 
   hasEventForComponent(biId) {
