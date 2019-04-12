@@ -1,4 +1,5 @@
 const EventDTO = require('../EventDTO').default;
+import {NativeModules} from 'react-native';
 
 class RemoteService {
   constructor(baseURL) {
@@ -12,24 +13,31 @@ class RemoteService {
       });
       const json = await response.json();
       return json.items.map((item) => new EventDTO(item));
-    } catch(e) {
+    } catch (e) {
       console.error(e);
     }
   }
 
   async updateComponent({biId, screenName, author}) {
     try {
+      const componentBase64Capture = await NativeModules.RNViewShot.captureScreen({
+        format: "jpg",
+        quality: 0.2,
+        result: 'base64'
+      });
+
       const response = await fetch(`${this.baseURL}/component`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({biid: biId, screenName, author})
+        body: JSON.stringify({biid: biId, screenName, author, image: componentBase64Capture})
       });
+
       if (!response.ok) {
         throw Error("Transport Error: Cannot update component. Status: " + response.status + "\nResponse: " + JSON.stringify(response));
       }
-    } catch(e) {
+    } catch (e) {
       console.error(e);
     }
   }
