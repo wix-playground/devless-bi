@@ -35,12 +35,22 @@ class ComponentEventHandler {
     this.sendBiCallback = callback;
   }
 
+  registerUpdateBiConfigForComponentCallback(callback) {
+    this.updateBiConfigForComponentCallback = callback;
+  }
+
   setCurrentVisibleScreen(screenName) {
     this.visibleScreen = screenName;
   }
 
-  updateBiConfig(biId) {
-    this.remoteService.updateComponent({biId, screenName: this.visibleScreen, author: this.configuration.author});
+  async updateBiConfig(biId) {
+    if (this.updateBiConfigForComponentCallback) {
+      this.updateBiConfigForComponentCallback({status: 'started'});
+    }
+    await this.remoteService.updateComponent({biId, screenName: this.visibleScreen, author: this.configuration.author});
+    if (this.updateBiConfigForComponentCallback) {
+      this.updateBiConfigForComponentCallback({status: 'ended'});
+    }
   }
 
   hasEventForComponent(biId) {
