@@ -15,6 +15,7 @@ function withBiEvents(WrappedComponent) {
     }
 
     componentDidMount() {
+      this._notifyEvent('visible');
       this.listener = EventsRegistry.registerBiDevModeChanged((value) => {
         this.setState({biDevModeEnabled: value})
       })
@@ -27,10 +28,7 @@ function withBiEvents(WrappedComponent) {
     }
 
     _onPress = () => {
-      const {biId} = this.props;
-      if (biId) {
-        EventsRegistry.notifyComponentEvent({biId, trigger: 'onPress', componentRef: this.ref});
-      }
+      this._notifyEvent('onPress');
 
       if (!this.state.biDevModeEnabled) {
         const {onPress} = this.props;
@@ -46,6 +44,13 @@ function withBiEvents(WrappedComponent) {
           onPress={this._onPress}
           ref={(ref) => this.ref = ref} />
       );
+    }
+
+    _notifyEvent(trigger) {
+      const {biId} = this.props;
+      if (biId) {
+        EventsRegistry.notifyComponentEvent({biId, trigger, componentRef: this.ref});
+      }
     }
 
     render() {
