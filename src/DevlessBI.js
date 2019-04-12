@@ -49,8 +49,10 @@ class DevlessBI {
     return this.devModeActive;
   }
 
-  withEvents(Component) {
-    return withBiEvents(Component);
+  hijackComponentWithEvents(module, componentKey) {
+    const hijackedComponent = withBiEvents(module[componentKey]);
+    delete module[componentKey];
+    module[componentKey] = hijackedComponent;
   }
 
   async reloadEvents() {
