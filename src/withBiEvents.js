@@ -29,12 +29,12 @@ function withBiEvents(WrappedComponent) {
     _onPress = () => {
       const {biId} = this.props;
       if (biId) {
-        EventsRegistry.notifyComponentEvent({biId, trigger: 'onPress'});
+        EventsRegistry.notifyComponentEvent({biId, trigger: 'onPress', componentRef: this.ref});
       }
 
       if (!this.state.biDevModeEnabled) {
         const {onPress} = this.props;
-        if(onPress) {
+        if (onPress) {
           onPress();
         }
       }
@@ -42,7 +42,9 @@ function withBiEvents(WrappedComponent) {
 
     _render() {
       return (
-        <WrappedComponent {...this.props} onPress={this._onPress}/>
+        <WrappedComponent {...this.props}
+          onPress={this._onPress}
+          ref={(ref) => this.ref = ref} />
       );
     }
 
@@ -55,7 +57,10 @@ function withBiEvents(WrappedComponent) {
           return (
             <View>
               {this._render()}
-              <OverlayComponent pointerEvents={'none'} {...props} style={[props.style, {position: 'absolute', left: 0, bottom: 0, top: 0, right: 0}]}/>
+              <OverlayComponent
+                {...props}
+                pointerEvents={'none'}
+                style={[props.style, {position: 'absolute', left: 0, bottom: 0, top: 0, right: 0}]} />
             </View>
           );
         }

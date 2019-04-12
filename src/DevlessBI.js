@@ -54,10 +54,12 @@ class DevlessBI {
     return this.componentEventHandler.hasEventForComponent(biId);
   }
 
-  _handleComponentEvent({biId, trigger}) {
+  _handleComponentEvent({biId, trigger, componentRef}) {
     this.componentEventHandler.handleComponentEvent({
+      isDevMode: this.isDevMode(),
       biId,
-      isDevMode: this.isDevMode()
+      trigger,
+      componentRef
     });
   }
 }
