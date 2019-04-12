@@ -39,6 +39,10 @@ class ComponentEventHandler {
     this.updateBiConfigForComponentCallback = callback;
   }
 
+  unregisterUpdateBiConfigForComponent() {
+    delete this.updateBiConfigForComponentCallback;
+  }
+
   setCurrentVisibleScreen(screenName) {
     this.visibleScreen = screenName;
   }

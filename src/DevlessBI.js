@@ -23,8 +23,8 @@ class DevlessBI {
     this.componentEventHandler.registerUpdateBiConfigForComponentCallback(callback);
   }
 
-  unregisterUpdateBiConfigForComponent(callback) {
-    delete this.componentEventHandler;
+  unregisterUpdateBiConfigForComponent() {
+    this.componentEventHandler.unregisterUpdateBiConfigForComponent();
   }
 
   setCurrentVisibleScreen(screenName) {
