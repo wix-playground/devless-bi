@@ -20,11 +20,14 @@ class RemoteService {
 
   async updateComponent({biId, screenName, author}) {
     try {
-      const componentBase64Capture = await NativeModules.RNViewShot.captureScreen({
-        format: "jpg",
-        quality: 0.2,
-        result: 'base64'
-      });
+      let componentBase64Capture = '';
+      if (NativeModules.RNViewShot) {
+        componentBase64Capture = await NativeModules.RNViewShot.captureScreen({
+          format: "jpg",
+          quality: 0.2,
+          result: 'base64'
+        });
+      }
 
       const response = await fetch(`${this.baseURL}/component`, {
         method: 'PUT',
