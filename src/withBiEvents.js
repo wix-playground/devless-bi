@@ -65,7 +65,7 @@ function withBiEvents(WrappedComponent) {
               <OverlayComponent
                 {...props}
                 pointerEvents={'none'}
-                style={[props.style, {position: 'absolute', left: 0, bottom: 0, top: 0, right: 0}]} />
+                style={[props.style, {position: 'absolute', left: 2, bottom: 2, top: 2, right: 2}]} />
             </View>
           );
         }
