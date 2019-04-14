@@ -16,6 +16,10 @@ class EventDTO {
     return this._event.source;
   }
 
+  get trigger() {
+    return this._event.trigger;
+  }
+
   get params() {
     const result = (this._event.params || {}).map((param) => {
       const newParam = {};
