@@ -6,17 +6,14 @@ class ComponentEventHandler {
       this.updateBiConfig(biId)
     } else {
       const event = this._getEventByBiId(biId);
-      if (event && event.isValid() && event.trigger === trigger) {
+      if (event && event.isValid()) {
         this.sendBiCallback({
-          event: {
-            src: event.src,
-            evid: event.evid,
-            params: event.params
-          },
-          componentRef
-        });
+          src: event.src,
+          evid: event.evid,
+          params: event.params
+        }, componentRef);
       } else {
-        console.error(`Event is not valid: ${event}`)
+        console.error(`Event is not valid: ${JSON.stringify(event)}`)
       }
     }
   };
