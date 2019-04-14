@@ -10,8 +10,15 @@ function withBiEvents(WrappedComponent) {
       super(props);
 
       this.state = {
-        biDevModeEnabled: false
+        biDevModeEnabled: false,
+        screenshotMode: false
       }
+
+      this.componentScreenshotModeListener = EventsRegistry.registerComponentScreenshotMode(({biId, enabled, doneCallback}) => {
+        if (this.props.biId === biId) {
+          this.setState({screenshotMode: enabled}, doneCallback);
+        }
+      });
     }
 
     componentDidMount() {
@@ -25,6 +32,7 @@ function withBiEvents(WrappedComponent) {
       if (this.listener) {
         this.listener.remove();
       }
+      this.componentScreenshotModeListener.remove();
     }
 
     _onPress = () => {
@@ -41,7 +49,7 @@ function withBiEvents(WrappedComponent) {
     _render() {
       return (
         <WrappedComponent {...this.props}
-          onPress={this._onPress}
+          onPress={this.props.ignoreBi ? this.props.onPress : this._onPress}
           ref={(ref) => this.ref = ref} />
       );
     }
@@ -59,13 +67,14 @@ function withBiEvents(WrappedComponent) {
         const {OverlayComponent, propsGenerator} = ComponentRegistry.getButtonRenderOverlay();
         if (OverlayComponent) {
           const props = propsGenerator({biId});
+          const screenshotStyle = this.state.screenshotMode ? {backgroundColor: 'rgba(241, 290, 11, 0.5)'} : {};
           return (
             <View>
               {this._render()}
               <OverlayComponent
                 {...props}
                 pointerEvents={'none'}
-                style={[props.style, {position: 'absolute', left: 2, bottom: 2, top: 2, right: 2}]} />
+                style={[props.style, {position: 'absolute', left: 2, bottom: 2, top: 2, right: 2}, screenshotStyle]} />
             </View>
           );
         }

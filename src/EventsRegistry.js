@@ -35,4 +35,13 @@ export default class EventsRegistry {
   static notifyBiDevModeDeactivated = () => {
     EventsRegistry.notifyListeners('biDevModeChanged', false);
   };
+
+
+  static registerComponentScreenshotMode = (callback) => {
+    return EventsRegistry.addListener('screenshotMode', callback);
+  };
+
+  static notifyComponentScreenshotMode = (args) => {
+    EventsRegistry.notifyListeners('screenshotMode', args);
+  };
 }
