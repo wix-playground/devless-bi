@@ -13,7 +13,7 @@ class EventDTO {
   }
 
   get src() {
-    return this._event.src;
+    return this._event.source;
   }
 
   get params() {
