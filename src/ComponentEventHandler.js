@@ -14,8 +14,6 @@ class ComponentEventHandler {
             params: event.params
           }, componentRef);
         }
-      } else {
-        console.error(`Event is not valid: ${JSON.stringify(event)}`)
       }
     }
   };
@@ -62,7 +60,7 @@ class ComponentEventHandler {
   }
 
   _getEventByBiId(biId) {
-    return this.events.find((event) => event.biId === biId);
+    return (this.events || []).find((event) => event.biId === biId);
   }
 }
 
