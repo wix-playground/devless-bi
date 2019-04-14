@@ -17,7 +17,12 @@ class EventDTO {
   }
 
   get params() {
-    return JSON.parse(this._event.extraParams);
+    const result = (this._event.params || {}).map((param) => {
+      const newParam = {};
+      newParam[param.key] = param.value;
+      return newParam;
+    });
+    return Object.assign({}, ...result);
   }
 
   isValid() {
